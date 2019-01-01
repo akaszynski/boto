@@ -311,14 +311,14 @@ class MWSConnection(AWSQueryConnection):
         except BotoServerError as bs:
             raise self._response_error_factory(bs.status, bs.reason, bs.body)
         body = response.read()
-        boto.log.debug(body)
+        # boto.log.debug(body)
         if not body:
-            boto.log.error('Null body %s' % body)
+            # boto.log.error('Null body %s' % body)
             raise self._response_error_factory(response.status,
                                                response.reason, body)
         if response.status != 200:
-            boto.log.error('%s %s' % (response.status, response.reason))
-            boto.log.error('%s' % body)
+            # boto.log.error('%s %s' % (response.status, response.reason))
+            # boto.log.error('%s' % body)
             raise self._response_error_factory(response.status,
                                                response.reason, body)
         digest = response.getheader('Content-MD5')
